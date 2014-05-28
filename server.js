@@ -1,6 +1,10 @@
-var express = require('express');
+var express = require('express'),
+    bodyParser = require('body-parser'),
+    decode = require('salesforce-signed-request');
 
 var app = express();
+
+app.use(bodyParser());          // pull information from html in POST
 
 app.get('/', function (req, res) {
     res.render('index.jade', {name: 'Christophe Coenraets'});
