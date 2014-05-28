@@ -1,5 +1,6 @@
 var express = require('express'),
     bodyParser = require('body-parser'),
+    request = require('request'),
     decode = require('salesforce-signed-request');
 
 var app = express();
@@ -17,14 +18,25 @@ app.post('/signedrequest', function(req, res) {
 
     var sfContext = decode(signedRequest, appSecret);
 
-        var oauthToken = sfContext.client.oauthToken;
-        var instanceUrl = sfContext.client.instanceUrl;
-//        var warehouseId = sfContext.context.environment.parameters.id //sent as parameters via visualForce parameters
+    var oauthToken = sfContext.client.oauthToken;
+    var instanceUrl = sfContext.client.instanceUrl;
 
     console.log(oauthToken);
     console.log(instanceUrl);
 
-    res.render('index.jade', {name: 'Christophe Coenraets'});
+
+    var q = "SELECT Id, Name FROM Contact LIMIT 10";
+    var r = {
+        url: instanceUrl + '/services/data/v29.0/query?q=' + q,
+        headers: {
+            'Authorization': oauthToken
+        }
+    };
+
+    request(r, function(data) {
+        res.render('index.jade', {name: console.log(JSON.stringify(data))});
+    });
+
 });
 
 //function processSignedRequest(req, res) {
