@@ -40,7 +40,7 @@ app.post('/signedrequest', function(req, res) {
         console.log('err: ' + err);
         console.log('response: ' + response);
         console.log('body: ' + body);
-        res.render('index.jade', {name: 'cc'});
+        res.render('index.jade', {contacts: body.records});
     });
 
 });
