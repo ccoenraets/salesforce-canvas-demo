@@ -12,9 +12,10 @@ app.get('/', function (req, res) {
 
 app.post('/signedrequest', function(req, res) {
 
-    var signedRequest = req.body.signed_request;
+    var signedRequest = req.body.signed_request,
+        appSecret = process.env.APP_SECRET;
 
-    var sfContext = decode(signedRequest, config.APP_SECRET);
+    var sfContext = decode(signedRequest, appSecret);
 
         var oauthToken = sfContext.client.oauthToken;
         var instanceUrl = sfContext.client.instanceUrl;
