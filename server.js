@@ -7,6 +7,18 @@ app.get('/', function (req, res) {
 });
 
 app.post('/signedrequest', function(req, res) {
+
+    var signedRequest = req.body.signed_request;
+
+    var sfContext = decode(signedRequest, config.APP_SECRET);
+
+        var oauthToken = sfContext.client.oauthToken;
+        var instanceUrl = sfContext.client.instanceUrl;
+//        var warehouseId = sfContext.context.environment.parameters.id //sent as parameters via visualForce parameters
+
+    console.log(oauthToken);
+    console.log(instanceUrl);
+
     res.render('index.jade', {name: 'Christophe Coenraets'});
 });
 
