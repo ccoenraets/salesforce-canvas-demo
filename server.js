@@ -33,11 +33,11 @@ app.post('/signedrequest', function(req, res) {
         }
     };
 
-    console.log(r);
+    console.log(JSON.stringify(r));
 
     request(r, function(data) {
         console.log('data');
-        console.log(JSON.stringify(data));
+        console.log('data: ' + JSON.stringify(data));
         res.render('index.jade', {name: console.log(JSON.stringify(data))});
     });
 
