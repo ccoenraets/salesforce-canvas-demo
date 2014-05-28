@@ -29,7 +29,7 @@ app.post('/signedrequest', function(req, res) {
     var r = {
         url: instanceUrl + '/services/data/v29.0/query?q=' + q,
         headers: {
-            'Authorization': 'OAuth ' + oauthToken.toLowerCase()
+            'Authorization': 'OAuth ' + oauthToken
         }
     };
 
