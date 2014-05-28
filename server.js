@@ -35,10 +35,12 @@ app.post('/signedrequest', function(req, res) {
 
     console.log(JSON.stringify(r));
 
-    request(r, function(data) {
+    request(r, function(err, response, body) {
         console.log('data');
-        console.log('data: ' + JSON.stringify(data));
-        res.render('index.jade', {name: console.log(JSON.stringify(data))});
+        console.log('err: ' + JSON.stringify(err));
+        console.log('response: ' + JSON.stringify(response));
+        console.log('body: ' + JSON.stringify(body));
+        res.render('index.jade', {name: console.log(JSON.stringify(body))});
     });
 
 });
