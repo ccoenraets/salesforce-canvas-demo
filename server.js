@@ -33,6 +33,8 @@ app.post('/signedrequest', function(req, res) {
         }
     };
 
+    console.log(r);
+
     request(r, function(data) {
         console.log('data');
         console.log(JSON.stringify(data));
