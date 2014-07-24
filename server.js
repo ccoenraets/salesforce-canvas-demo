@@ -9,6 +9,8 @@ app.use(bodyParser()); // pull information from html in POST
 
 app.post('/signedrequest', function(req, res) {
 
+    console.log('/signedrequest');
+
     var signedRequest = req.body.signed_request,
         appSecret = process.env.APP_SECRET,
         sfContext = decode(signedRequest, appSecret),
@@ -25,7 +27,7 @@ app.post('/signedrequest', function(req, res) {
         };
 
     request(contactRequest, function(err, response, body) {
-        res.render('index.jade', {user: sfContext.user.fullName, contacts: JSON.parse(body).records});
+        res.render('index.jade', {contacts: JSON.parse(body).records});
     });
 
 });
