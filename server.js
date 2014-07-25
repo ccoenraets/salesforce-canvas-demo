@@ -13,7 +13,8 @@ app.post('/signedrequest', function(req, res) {
 
     var signedRequest = req.body.signed_request,
         appSecret = process.env.APP_SECRET,
-        sfContext = decode(signedRequest, appSecret),
+//        sfContext = decode(signedRequest, appSecret),
+        sfContext = decode(signedRequest, "2287735476056043758"),
         oauthToken = sfContext.client.oauthToken,
         instanceUrl = sfContext.client.instanceUrl,
 
