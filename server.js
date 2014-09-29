@@ -44,7 +44,7 @@ app.post('/signedrequest', function(req, res) {
         };
 
     console.log('#########');
-    console.log(sfContext.context.environment);
+    console.log(sfContext.context.environment.record);
 
     request(contactRequest, function(err, response, body) {
         res.render('index', sfContext.context);
