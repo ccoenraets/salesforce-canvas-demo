@@ -37,11 +37,10 @@ app.post('/signedrequest', function(req, res) {
         };
 
     console.log('#########');
-    console.log(sfContext.user);
     console.log(sfContext);
 
     request(contactRequest, function(err, response, body) {
-        res.render('index', sfContext);
+        res.render('index', sfContext.context);
     });
 
 });
