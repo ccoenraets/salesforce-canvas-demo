@@ -31,6 +31,9 @@ app.post('/signedrequest', function(req, res) {
             }
         };
 
+    console.log('#########');
+    console.log(sfContext);
+
     request(contactRequest, function(err, response, body) {
         res.render('index.jade', {contacts: JSON.parse(body).records});
     });
