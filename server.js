@@ -3,7 +3,7 @@ var express = require('express'),
     request = require('request'),
     decode = require('salesforce-signed-request'),
 
-    clientSecret = process.env.CLIENT_SECRET,
+    consumerSecret = process.env.CONSUMER_SECRET,
 
     app = express();
 
@@ -14,7 +14,7 @@ app.post('/signedrequest', function(req, res) {
     console.log('/signedrequest');
 
     var signedRequest = req.body.signed_request,
-        sfContext = decode(signedRequest, clientSecret), // second param = app secret
+        sfContext = decode(signedRequest, consumerSecret),
         oauthToken = sfContext.client.oauthToken,
         instanceUrl = sfContext.client.instanceUrl,
 
