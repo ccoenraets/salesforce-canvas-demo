@@ -16,7 +16,7 @@ console.log('*******');
 console.log(consumerSecret);
 
 app.get('/', function(req, res) {
-    res.render('test', { title: 'The index page!' })
+    res.render('test', { });
 });
 
 app.get('/qr', function(req, res) {
