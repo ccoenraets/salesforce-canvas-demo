@@ -2,40 +2,21 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     request = require('request'),
     decode = require('salesforce-signed-request'),
-    qr = require('qr-image'),
-
     consumerSecret = process.env.CONSUMER_SECRET,
-
     app = express();
 
 app.set('view engine', 'ejs');
 app.use(bodyParser()); // pull information from html in POST
 app.use(express.static(__dirname + '/public'));
 
-console.log('*******');
-console.log(consumerSecret);
-
-app.get('/', function(req, res) {
-    res.render('test', { });
-});
-
-app.get('/qr', function(req, res) {
-    var code = qr.image('tel:+16172443672', { type: 'svg' });
-    res.type('svg');
-    code.pipe(res);
-});
-
 app.post('/signedrequest', function(req, res) {
 
-    console.log('*******');
-    console.log('/signedrequest');
+    var signedRequest = decode(req.body.signed_request, consumerSecret),
+        context = signedRequest.context,
+        oauthToken = signedRequest.client.oauthToken,
+        instanceUrl = signedRequest.client.instanceUrl,
 
-    var signedRequest = req.body.signed_request,
-        sfContext = decode(signedRequest, consumerSecret),
-        oauthToken = sfContext.client.oauthToken,
-        instanceUrl = sfContext.client.instanceUrl,
-
-        query = "SELECT Id, Name FROM Contact LIMIT 10",
+        query = "SELECT Id, Name, Address, Phone FROM Contact WHERE Id = " + context.environment.Id,
 
         contactRequest = {
             url: instanceUrl + '/services/data/v29.0/query?q=' + query,
@@ -44,11 +25,8 @@ app.post('/signedrequest', function(req, res) {
             }
         };
 
-    console.log('#########');
-    console.log(sfContext.context.environment.record);
-
     request(contactRequest, function(err, response, body) {
-        res.render('index', sfContext.context);
+        res.render('index', context);
     });
 
 });
