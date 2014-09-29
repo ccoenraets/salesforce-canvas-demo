@@ -7,10 +7,15 @@ var express = require('express'),
 
     app = express();
 
+app.set('view engine', 'ejs');
 app.use(bodyParser()); // pull information from html in POST
 
 console.log('*******');
 console.log(consumerSecret);
+
+app.get('/', function(req, res) {
+    res.render('index', { title: 'The index page!' })
+});
 
 app.post('/signedrequest', function(req, res) {
 
