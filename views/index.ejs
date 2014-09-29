@@ -1,6 +1,10 @@
 <div>
-Hello, I'm a web app written in Node.js embedded in your Salesforce page.
-I'm aware of my environment. For example, I know who you are (<strong><%= user.fullName %></strong>), the object this page is showing (<strong><%= environment.record.attributes.type %></strong>), and its Id (<strong><%= environment.record.attributes.Id %></strong>).
-With that information I can run contextual queries and show useful information.
-So it's easy for you to integrate external apps in you Salesforce environement.
+<img src="nodejs.png"/>
+<p>Hello, <%= user.firstName %>. I'm a web app written in Node.js embedded in your Salesforce page.</p>
+I'm aware of my environment. For example, here are a few things I know:
+<table>
+    <tr><td>User:</td><td><%= user.fullName %></td></tr>
+    <tr><td>Object:</td><td><%= environment.record.attributes.type %></td></tr>
+    <tr><td>Id:</td><td><%= environment.record.Id %></td></tr>
+</table>
 </div>

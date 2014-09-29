@@ -10,12 +10,13 @@ var express = require('express'),
 
 app.set('view engine', 'ejs');
 app.use(bodyParser()); // pull information from html in POST
+app.use(express.static(__dirname + '/public'));
 
 console.log('*******');
 console.log(consumerSecret);
 
 app.get('/', function(req, res) {
-    res.render('index', { title: 'The index page!' })
+    res.render('test', { title: 'The index page!' })
 });
 
 app.get('/qr', function(req, res) {
