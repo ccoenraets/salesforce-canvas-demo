@@ -9,8 +9,12 @@ var express = require('express'),
 
 app.use(bodyParser()); // pull information from html in POST
 
+console.log('*******');
+console.log(consumerSecret);
+
 app.post('/signedrequest', function(req, res) {
 
+    console.log('*******');
     console.log('/signedrequest');
 
     var signedRequest = req.body.signed_request,
