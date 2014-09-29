@@ -1,10 +1,11 @@
 .canvas-app {
-    border-top: solid 1px lightgrey;
-    border-bottom: solid 1px lightgrey;
+    padding: 8px 0;
+    border-top: solid 1px #eeeeee;
+    border-bottom: solid 1px #eeeeee;
 }
 
 table, th, td {
-    border: 1px solid lightgrey;
+    border: 1px solid #eeeeee;
     border-collapse: collapse;
 }
 
