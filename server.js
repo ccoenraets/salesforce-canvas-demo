@@ -2,6 +2,7 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     request = require('request'),
     decode = require('salesforce-signed-request'),
+    qr = require('qr-image'),
 
     consumerSecret = process.env.CONSUMER_SECRET,
 
@@ -15,6 +16,12 @@ console.log(consumerSecret);
 
 app.get('/', function(req, res) {
     res.render('index', { title: 'The index page!' })
+});
+
+app.get('/qr', function(req, res) {
+    var code = qr.image('tel:+16172443672', { type: 'svg' });
+    res.type('svg');
+    code.pipe(res);
 });
 
 app.post('/signedrequest', function(req, res) {
@@ -37,7 +44,7 @@ app.post('/signedrequest', function(req, res) {
         };
 
     console.log('#########');
-    console.log(sfContext);
+    console.log(sfContext.context.environment);
 
     request(contactRequest, function(err, response, body) {
         res.render('index', sfContext.context);
