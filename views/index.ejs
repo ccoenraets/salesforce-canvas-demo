@@ -5,15 +5,15 @@
     <link href="styles.css" rel="stylesheet">
 </head>
 <body>
-<div style="border: solid 1px grey;padding:8px;">
+<div class="canvas-app">
     <img src="nodejs.png"/>
     <p>Hello, <%= user.firstName %>. This is a web app written in Node.js embedded in your Salesforce page (It could be written in any other language).</p>
-    It's aware of the environment it's running in. For example, here are a few things it knows:
+    <p>It's aware of the environment it's running in. For example, here are a few things it knows:</p>
     <table>
         <tr><td>User:</td><td><%= user.fullName %></td></tr>
         <tr><td>Object:</td><td><%= environment.record.attributes.type %></td></tr>
         <tr><td>Id:</td><td><%= environment.record.Id %></td></tr>
     </table>
-    With that information, it's easy to integrate contextual applications written in any language inside your Salesforce pages.
+    <p>With that information, it's easy to integrate contextual applications written in any language inside your Salesforce pages.</p>
 </div>
 </body>

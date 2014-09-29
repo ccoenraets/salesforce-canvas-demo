@@ -1,3 +1,8 @@
+.canvas-app {
+    border-top: solid 1px lightgrey;
+    border-bottom: solid 1px lightgrey;
+}
+
 table, th, td {
     border: 1px solid lightgrey;
     border-collapse: collapse;
