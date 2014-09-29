@@ -1,9 +1,11 @@
 var express = require('express'),
     bodyParser = require('body-parser'),
     request = require('request'),
-    decode = require('salesforce-signed-request');
+    decode = require('salesforce-signed-request'),
 
-var app = express();
+    clientSecret = process.env.CLIENT_SECRET,
+
+    app = express();
 
 app.use(bodyParser()); // pull information from html in POST
 
@@ -12,9 +14,7 @@ app.post('/signedrequest', function(req, res) {
     console.log('/signedrequest');
 
     var signedRequest = req.body.signed_request,
-        appSecret = process.env.APP_SECRET,
-//        sfContext = decode(signedRequest, appSecret),
-        sfContext = decode(signedRequest, "2287735476056043758"),
+        sfContext = decode(signedRequest, clientSecret), // second param = app secret
         oauthToken = sfContext.client.oauthToken,
         instanceUrl = sfContext.client.instanceUrl,
 
