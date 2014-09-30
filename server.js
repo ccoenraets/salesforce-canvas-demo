@@ -40,16 +40,10 @@ app.post('/signedrequest', function(req, res) {
 
     var text = 'Hello World';
 
-    var qr = qrcode.qrcode(4, 'M');
-    qr.addData(text);
-    qr.make();
-    var tag = qr.createImgTag(4);
 
     request(contactRequest, function(err, response, body) {
         console.log('response:');
         console.log(response);
-        console.log('body:');
-        console.log(body);
         res.render('index', {context: context, tag: tag});
     });
 
