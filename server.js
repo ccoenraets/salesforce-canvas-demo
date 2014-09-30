@@ -44,7 +44,7 @@ app.post('/signedrequest', function(req, res) {
         var qr = qrcode.qrcode(4, 'M'),
             contact = JSON.parse(body).records[0];
 //        var text = contact.LastName + ',' + contact.FirstName + ';ADR:' + contact.MailingStreet + ',,' + contact.MailingCity + ',ST' + contact.MailingPostalCode + ';TEL:' + contact.Phone + ';TEL:' + contact.MobilePhone + ';EMAIL:' + contact.Email + ';;';
-        var text = contact.LastName + ',' + contact.FirstName + ';ADR:' + contact.MailingStreet + ',,' + contact.MailingCity + ',ST' + contact.MailingPostalCode + ';TEL:' + contact.Phone + ';;';
+        var text = contact.LastName + ',' + contact.FirstName + ';ADR:' + contact.MailingStreet + ',,' + contact.MailingCity + ',ST' + contact.MailingPostalCode + ';TEL:617-244-3672' + ';;';
         qr.addData(text);
         qr.make();
         var imgTag = qr.createImgTag(4);
