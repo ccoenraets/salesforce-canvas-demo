@@ -38,17 +38,14 @@ app.post('/signedrequest', function(req, res) {
             }
         };
 
-
-
     request(contactRequest, function(err, response, body) {
-        console.log('response:');
-        console.log(response);
-        var text = 'Hello World';
-        var qr = qrcode.qrcode(4, 'M');
+        conso;e.log('**********************************************');
+        var qr = qrcode.qrcode(4, 'M'),
+            text = '';
         qr.addData(text);
         qr.make();
-        var tag = qr.createImgTag(4);
-        res.render('index', {context: context, tag: tag});
+        var imgTag = qr.createImgTag(4);
+        res.render('index', {context: context, imgTag: imgTag});
     });
 
 });
