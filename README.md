@@ -1,7 +1,7 @@
-## Step 1: Create a Connected App
+### Step 1: Create a Connected App
 
 
-## Step 2: Deploy this App
+### Step 2: Deploy this App to Heroku
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
