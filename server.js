@@ -1,7 +1,7 @@
 var express = require('express'),
     bodyParser = require('body-parser'),
     request = require('request'),
-    qrcode = require('qrcode'),
+    qrcode = require('qrcode-npm'),
     decode = require('salesforce-signed-request'),
 
     consumerSecret = process.env.CONSUMER_SECRET,
@@ -11,6 +11,15 @@ var express = require('express'),
 app.set('view engine', 'ejs');
 app.use(bodyParser()); // pull information from html in POST
 app.use(express.static(__dirname + '/public'));
+
+app.get('/', function(req, res) {
+    var text = 'hello';
+    var qr = qrcode.qrcode(4, 'M');
+    qr.addData(text);
+    qr.make();
+    var tag = qr.createImgTag(4);
+    res.send(tag);
+});
 
 app.post('/signedrequest', function(req, res) {
 
