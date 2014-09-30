@@ -39,7 +39,7 @@ app.post('/signedrequest', function(req, res) {
         };
 
     request(contactRequest, function(err, response, body) {
-        conso;e.log('**********************************************');
+        console.log('**********************************************');
         var qr = qrcode.qrcode(4, 'M'),
             text = '';
         qr.addData(text);
