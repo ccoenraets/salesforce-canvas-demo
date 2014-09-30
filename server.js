@@ -2,7 +2,9 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     request = require('request'),
     decode = require('salesforce-signed-request'),
+
     consumerSecret = process.env.CONSUMER_SECRET,
+
     app = express();
 
 app.set('view engine', 'ejs');
@@ -11,6 +13,7 @@ app.use(express.static(__dirname + '/public'));
 
 app.post('/signedrequest', function(req, res) {
 
+    // You could save this information in the user session if needed
     var signedRequest = decode(req.body.signed_request, consumerSecret),
         context = signedRequest.context,
         oauthToken = signedRequest.client.oauthToken,
@@ -26,6 +29,10 @@ app.post('/signedrequest', function(req, res) {
         };
 
     request(contactRequest, function(err, response, body) {
+        console.log('response:');
+        console.log(response);
+        console.log('body:');
+        console.log(body);
         res.render('index', context);
     });
 
