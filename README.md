@@ -3,9 +3,9 @@
 
 ## Step 2: Deploy this App
 
-    [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
 
-    ```
-    heroku config:set CONSUMER_SECRET=[CONNECTED_APP_SECRET]
-    ```
+  ```
+  heroku config:set CONSUMER_SECRET=[CONNECTED_APP_SECRET]
+  ```
