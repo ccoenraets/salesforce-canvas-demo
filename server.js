@@ -29,7 +29,7 @@ app.post('/signedrequest', function(req, res) {
         oauthToken = signedRequest.client.oauthToken,
         instanceUrl = signedRequest.client.instanceUrl,
 
-        query = "SELECT Id, Name, MailingAddress, Phone FROM Contact WHERE Id = '" + context.environment.Id + "'",
+        query = "SELECT Id, Name, MailingStreet, MailingState, MailingPostalCode, MailingCountry, Phone FROM Contact WHERE Id = '" + context.environment.Id + "'",
 
         contactRequest = {
             url: instanceUrl + '/services/data/v29.0/query?q=' + query,
