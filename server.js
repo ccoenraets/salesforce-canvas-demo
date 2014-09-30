@@ -42,10 +42,10 @@ app.post('/signedrequest', function(req, res) {
         console.log('************** body********************************');
         console.log(body);
         var qr = qrcode.qrcode(4, 'M'),
-            contact = JSON.parse(body).records[0],
-            text = contact.LastName + ',' + contact.FirstName + ';ADR:' + contact.MailingStreet + ',,' + contact.MailingCity + ',ST' + contact.MailingPostalCode + ';TEL:' + contact.Phone + ';TEL:' + contact.MobilePhone + ';EMAIL:' + contact.Email + ';;';
-        console.log(contact);
-        qr.addData('hello');
+            contact = JSON.parse(body).records[0];
+//        var text = contact.LastName + ',' + contact.FirstName + ';ADR:' + contact.MailingStreet + ',,' + contact.MailingCity + ',ST' + contact.MailingPostalCode + ';TEL:' + contact.Phone + ';TEL:' + contact.MobilePhone + ';EMAIL:' + contact.Email + ';;';
+        var text = contact.LastName + ',' + contact.FirstName;
+        qr.addData(text);
         qr.make();
         var imgTag = qr.createImgTag(4);
         res.render('index', {context: context, imgTag: imgTag});
