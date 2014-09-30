@@ -43,7 +43,8 @@ app.post('/signedrequest', function(req, res) {
         console.log(body);
         var qr = qrcode.qrcode(4, 'M'),
             contact = JSON.parse(body).records[0],
-            text = 'N:' + contact.LastName + ',' + contact.FirstName + ';ADR:' + contact.MailingStreet + ',,' + contact.MailingCity + ',ST' + contact.MailingPostalCode + ';TEL:' + contact.Phone + ';TEL:' + contact.MobilePhone + ';EMAIL:' + contact.Email + ';;';
+            text = contact.LastName + ',' + contact.FirstName + ';ADR:' + contact.MailingStreet + ',,' + contact.MailingCity + ',ST' + contact.MailingPostalCode + ';TEL:' + contact.Phone + ';TEL:' + contact.MobilePhone + ';EMAIL:' + contact.Email + ';;';
+        console.log(contact);
         qr.addData(text);
         qr.make();
         var imgTag = qr.createImgTag(4);
