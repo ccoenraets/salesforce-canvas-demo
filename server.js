@@ -39,7 +39,7 @@ app.post('/signedrequest', function(req, res) {
         };
 
     request(contactRequest, function(err, response, body) {
-        var qr = qrcode.qrcode(4, 'M'),
+        var qr = qrcode.qrcode(4, 'L'),
             contact = JSON.parse(body).records[0],
             text = 'MECARD:N:' + contact.LastName + ',' + contact.FirstName + ';TEL:' + contact.Phone + ';EMAIL:' + contact.Email + ';;';
         qr.addData(text);
