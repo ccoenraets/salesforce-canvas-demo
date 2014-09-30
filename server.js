@@ -40,7 +40,7 @@ app.post('/signedrequest', function(req, res) {
 
     request(contactRequest, function(err, response, body) {
         console.log('************** body********************************');
-        console.log(body.records[0]);
+        console.log(body);
         var qr = qrcode.qrcode(4, 'M'),
             contact = body.records[0],
             text = 'N:' + contact.LastName + ',' + contact.FirstName + ';ADR:' + contact.MailingStreet + ',,' + contact.MailingCity + ',ST' + contact.MailingPostalCode + ';TEL:' + contact.Phone + ';TEL:' + contact.MobilePhone + ';EMAIL:' + contact.Email + ';;';
