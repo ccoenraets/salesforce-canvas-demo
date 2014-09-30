@@ -29,7 +29,7 @@ app.post('/signedrequest', function(req, res) {
         oauthToken = signedRequest.client.oauthToken,
         instanceUrl = signedRequest.client.instanceUrl,
 
-        query = "SELECT Id, FirstName, LastName, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, Phone, MobilePhone FROM Contact WHERE Id = '" + context.environment.record.Id + "'",
+        query = "SELECT Id, FirstName, LastName, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, Phone, MobilePhone, Email FROM Contact WHERE Id = '" + context.environment.record.Id + "'",
 
         contactRequest = {
             url: instanceUrl + '/services/data/v29.0/query?q=' + query,
@@ -44,7 +44,7 @@ app.post('/signedrequest', function(req, res) {
         var qr = qrcode.qrcode(4, 'M'),
             contact = JSON.parse(body).records[0];
 //        var text = contact.LastName + ',' + contact.FirstName + ';ADR:' + contact.MailingStreet + ',,' + contact.MailingCity + ',ST' + contact.MailingPostalCode + ';TEL:' + contact.Phone + ';TEL:' + contact.MobilePhone + ';EMAIL:' + contact.Email + ';;';
-        var text = 'MECARD:N:' + contact.LastName + ',' + contact.FirstName + ';TEL:' + contact.Phone + ';EMAIL:' + contact.Email + ';;';
+        var text = 'MECARD:N:' + contact.LastName + ',' + contact.FirstName + ';TEL:' + contact.Phone + ';EMAIL:' + contact.Email + ';ADR:' + contact.MailingStreet + ',' + contact.MailingCity + ',' + contact.MailingState + ',' + contact.MailingPostalCode + ';;';
         qr.addData(text);
         qr.make();
         var imgTag = qr.createImgTag(4);
