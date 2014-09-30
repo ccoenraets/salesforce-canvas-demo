@@ -5,7 +5,4 @@
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
-
-  ```
-  heroku config:set CONSUMER_SECRET=[CONNECTED_APP_SECRET]
-  ```
+When prompted for CONSUMER_SECRET in the deployment wizard, enter the consumer secret of the connected app created in step 1.
