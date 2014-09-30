@@ -29,7 +29,7 @@ app.post('/signedrequest', function(req, res) {
         oauthToken = signedRequest.client.oauthToken,
         instanceUrl = signedRequest.client.instanceUrl,
 
-        query = "SELECT Id, Name, MailingStreet, MailingState, MailingPostalCode, MailingCountry, Phone FROM Contact WHERE Id = '" + context.environment.record.Id + "'",
+        query = "SELECT Id, Name, MailingStreet, MailingState, MailingPostalCode, MailingCountry, Phone, MobilePhone FROM Contact WHERE Id = '" + context.environment.record.Id + "'",
 
         contactRequest = {
             url: instanceUrl + '/services/data/v29.0/query?q=' + query,
@@ -40,9 +40,10 @@ app.post('/signedrequest', function(req, res) {
 
     request(contactRequest, function(err, response, body) {
         console.log('************** body********************************');
-        console.log(body);
+        console.log(body.records[0]);
         var qr = qrcode.qrcode(4, 'M'),
-            text = '';
+            contact = body.records[0],
+            text = 'N:' + contact.LastName + ',' + contact.FirstName + ';ADR:' + contact.MailingStreet + ',,' + contact.MailingCity + ',ST' + contact.MailingPostalCode + ';TEL:' + contact.Phone + ';TEL:' + contact.MobilePhone + ';EMAIL:' + contact.Email + ';;';
         qr.addData(text);
         qr.make();
         var imgTag = qr.createImgTag(4);
