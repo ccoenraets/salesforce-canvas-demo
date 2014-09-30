@@ -1,6 +1,7 @@
 var express = require('express'),
     bodyParser = require('body-parser'),
     request = require('request'),
+    qrcode = require('qrcode'),
     decode = require('salesforce-signed-request'),
 
     consumerSecret = process.env.CONSUMER_SECRET,
