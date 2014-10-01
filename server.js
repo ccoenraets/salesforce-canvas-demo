@@ -12,15 +12,6 @@ app.set('view engine', 'ejs');
 app.use(bodyParser()); // pull information from html in POST
 app.use(express.static(__dirname + '/public'));
 
-app.get('/', function(req, res) {
-    var text = 'hello';
-    var qr = qrcode.qrcode(4, 'M');
-    qr.addData(text);
-    qr.make();
-    var tag = qr.createImgTag(4);
-    res.send(tag);
-});
-
 app.post('/signedrequest', function(req, res) {
 
     // You could save this information in the user session if needed
