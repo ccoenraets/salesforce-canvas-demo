@@ -4,7 +4,7 @@ var express = require('express'),
     qrcode = require('qrcode-npm'),
     decode = require('salesforce-signed-request'),
 
-    consumerSecret = process.env.CONSUMER_SECRET,
+    consumerSecret = 'CC99E13D1CD5979F97F616EF1EFF46EEEF7438C5F412B99913508426DA126C73',
 
     app = express();
 
