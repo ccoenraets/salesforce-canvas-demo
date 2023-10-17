@@ -37,6 +37,7 @@ app.post('/signedrequest', function(req, res) {
         qr.addData(text);
         qr.make();
         var imgTag = qr.createImgTag(4);
+        console.log('qr code image ----->',imgTag);
         res.render('index', {context: context, imgTag: imgTag});
     });
 
