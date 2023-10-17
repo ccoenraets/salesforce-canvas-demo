@@ -29,7 +29,7 @@ app.post('/signedrequest', function(req, res) {
                 'Authorization': 'OAuth ' + oauthToken
             }
         };
-
+        console.log('signedRequest after decode ------> ' , signedRequest);
     request(contactRequest, function(err, response, body) {
         var qr = qrcode.qrcode(4, 'L'),
             contact = JSON.parse(body).records[0],
