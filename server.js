@@ -13,7 +13,8 @@ app.use(bodyParser()); // pull information from html in POST
 app.use(express.static(__dirname + '/public'));
 
 app.post('/signedrequest', function(req, res) {
-
+    console.log('request ---> ',req);
+    console.log('response ---> ',res);
     // You could save this information in the user session if needed
     var signedRequest = decode(req.body.signed_request, consumerSecret),
         context = signedRequest.context,
@@ -28,7 +29,7 @@ app.post('/signedrequest', function(req, res) {
                 'Authorization': 'OAuth ' + oauthToken
             }
         };
-
+        console.log('signedRequest after decode ------> ' , signedRequest);
     request(contactRequest, function(err, response, body) {
         var qr = qrcode.qrcode(4, 'L'),
             contact = JSON.parse(body).records[0],
@@ -36,6 +37,7 @@ app.post('/signedrequest', function(req, res) {
         qr.addData(text);
         qr.make();
         var imgTag = qr.createImgTag(4);
+        console.log('qr code image ----->',imgTag);
         res.render('index', {context: context, imgTag: imgTag});
     });
 
@@ -45,4 +47,5 @@ app.set('port', process.env.PORT || 5000);
 
 app.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
+    console.log('Consumer Secret Key ----> ', consumerSecret);
 });
